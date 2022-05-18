@@ -31,7 +31,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("department")
-    private List<Damage_type> damage_types;
+    private List<DamageType> damageTypes;
 
     @Nullable
     @Column(name="created_Date")

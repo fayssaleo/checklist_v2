@@ -3,12 +3,15 @@ package com.checklist.TA.bo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +23,32 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements UserDetails {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -61,8 +89,8 @@ public class User {
 
     @JsonIgnoreProperties("users")
     @ManyToMany
-    @JoinTable(name = "profile_group_users",joinColumns = @JoinColumn(name = "id_user"),inverseJoinColumns = @JoinColumn(name = "id_profile_group"))
-    private List<Profile_group> profile_groups;
+    @JoinTable(name = "profileGroup_users",joinColumns = @JoinColumn(name = "id_user"),inverseJoinColumns = @JoinColumn(name = "id_profileGroup"))
+    private List<ProfileGroup> profileGroups;
 
     @JsonIgnoreProperties("userDeclaration")
     @OneToMany(mappedBy = "userDeclaration",cascade = CascadeType.ALL,fetch = FetchType.LAZY)

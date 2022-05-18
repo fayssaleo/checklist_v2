@@ -19,7 +19,7 @@ public class Damage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private long id;
 
     @Column(name="name")
     private String name;
@@ -55,9 +55,9 @@ public class Damage {
     @JoinColumn(name="equipement_id")
     private Equipment equipement;
 
-    @JsonIgnoreProperties("damageList")
+    @JsonIgnoreProperties("damages")
     @ManyToOne
-    private Damage_type damage_type;
+    private DamageType damageType;
 
     @OneToMany(mappedBy = "damage",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("damage")

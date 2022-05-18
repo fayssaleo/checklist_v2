@@ -1,6 +1,8 @@
 package com.checklist.TA.vo;
 
 
+import com.checklist.TA.bo.User;
+
 public class UserVo {
     private String username;
     private String password;
@@ -20,4 +22,5 @@ public class UserVo {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

@@ -20,7 +20,7 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private long id;
 
     @Column(name="name")
     private String name;
@@ -31,7 +31,7 @@ public class Equipment {
 
     @JsonIgnoreProperties("equipementList")
     @ManyToOne
-    private Profile_group profile_group;
+    private ProfileGroup profileGroup;
 
     @Nullable
     @Column(name="created_Date")

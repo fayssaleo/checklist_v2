@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="profile_groups")
+@Table(name="profileGroups")
 @Data
 @Getter
 @Setter
@@ -19,7 +19,7 @@ import java.util.List;
 
 
 
-public class Profile_group {
+public class ProfileGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,18 +29,18 @@ public class Profile_group {
     @Column(name="name")
     private String name;
 
-    @JsonIgnoreProperties("profile_groups")
+    @JsonIgnoreProperties("profileGroups")
     @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "profile_group_users",joinColumns = @JoinColumn(name = "id_profile_group"),inverseJoinColumns = @JoinColumn(name = "id_user"))
+    @JoinTable(name = "profileGroup_users",joinColumns = @JoinColumn(name = "id_profileGroup"),inverseJoinColumns = @JoinColumn(name = "id_user"))
     private List<User> users;
 
-    @JsonIgnoreProperties("profile_group")
-    @OneToMany(mappedBy = "profile_group",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Damage_type> damage_types;
+    @JsonIgnoreProperties("profileGroup")
+    @OneToMany(mappedBy = "profileGroup",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<DamageType> damageTypes;
 
-    @JsonIgnoreProperties("profile_group")
-    @OneToMany(mappedBy = "profile_group",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("profileGroup")
+    @OneToMany(mappedBy = "profileGroup",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Equipment> equipments;
 
 

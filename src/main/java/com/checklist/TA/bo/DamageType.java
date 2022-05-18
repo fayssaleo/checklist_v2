@@ -12,13 +12,13 @@ import java.util.List;
 
 
 @Entity
-@Table(name="damage_types")
+@Table(name="damageTypes")
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Damage_type {
+public class DamageType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -29,13 +29,17 @@ public class Damage_type {
     @Column(name="name")
     private String name;
 
-    @JsonIgnoreProperties("damage_types")
+    @JsonIgnoreProperties("damageTypes")
     @ManyToOne
-    private Profile_group profile_group;
+    private ProfileGroup profileGroup;
 
-    @JsonIgnoreProperties("damage_types")
+    @JsonIgnoreProperties("damageTypes")
     @ManyToOne
     private Department department;
+
+    @JsonIgnoreProperties("damageType")
+    @OneToMany(mappedBy = "damageType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Damage> damages;
 
     @Nullable
     @Column(name="created_Date")
