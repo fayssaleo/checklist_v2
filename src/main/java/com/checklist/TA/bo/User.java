@@ -57,7 +57,7 @@ public class User implements UserDetails {
     @NotNull(message = "username null")
     @NotBlank(message = "saisir votre username")
     @Size(min = 3, message = "username  must have at least 3 characters")
-    @Column(name="username")
+    @Column(name="username",unique=true)
     private String username;
 
     @NotNull(message = "lastName null")

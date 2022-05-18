@@ -34,7 +34,7 @@ public class UserServiceUmpl implements UserService {
     }
 
     @Override
-    public Optional<User> DeleteId(User user) {
+    public Optional<User> Delete(User user) {
         userRepository.deleteById(user.getId());
         return Optional.ofNullable(user);
     }
