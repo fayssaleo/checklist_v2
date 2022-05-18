@@ -1,0 +1,65 @@
+package com.checklist.TA.bo;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+
+@Entity
+@Table(name="damages")
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Damage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+
+    @Column(name="name")
+    private String name;
+
+    @Column(name="status")
+    private String status;
+
+    @JsonIgnoreProperties("damageUserDeclaration")
+    @ManyToOne
+    private User userDeclaration;
+
+
+    @JsonIgnoreProperties("damageUserResolution")
+    @ManyToOne
+    private User userResolution;
+
+    @JsonIgnoreProperties("damageUserClosed")
+    @ManyToOne
+    private User userClosed;
+
+    @Column(name="description")
+    private String description;
+
+
+    @Column(name="created_date")
+    private Date createdDate;
+
+    @Column(name="update_date")
+    private Date updateDate;
+
+    @JsonIgnoreProperties("damage")
+    @OneToOne
+    @JoinColumn(name="equipement_id")
+    private Equipment equipement;
+
+    @JsonIgnoreProperties("damageList")
+    @ManyToOne
+    private Damage_type damage_type;
+
+    @OneToMany(mappedBy = "damage",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("damage")
+    private List<Picture> pictures;
+}

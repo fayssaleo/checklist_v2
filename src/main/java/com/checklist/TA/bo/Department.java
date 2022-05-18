@@ -2,8 +2,10 @@ package com.checklist.TA.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,11 +27,16 @@ public class Department {
 
     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("department")
-    // @JoinColumn(name = "id_departement")
     private List<Function> functions;
 
     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("department")
-    // @JoinColumn(name = "id_departement")
     private List<Damage_type> damage_types;
+
+    @Nullable
+    @Column(name="created_Date")
+    private Date createdDate;
+    @Nullable
+    @Column(name="update_Date")
+    private Date updateDate;
 }

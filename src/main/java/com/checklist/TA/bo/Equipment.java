@@ -6,32 +6,32 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
-@javax.persistence.Entity
-@Table(name="functions")
+@Entity
+@Table(name="equipments")
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Function {
+public class Equipment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Long id;
+    private int id;
 
     @Column(name="name")
     private String name;
 
-    @JsonIgnoreProperties("function")
-    @OneToMany(mappedBy = "function",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<User> users;
 
-    @JsonIgnoreProperties("functions")
+    @Column(name="description")
+    private String description;
+
+    @JsonIgnoreProperties("equipementList")
     @ManyToOne
-    private Department department;
+    private Profile_group profile_group;
 
     @Nullable
     @Column(name="created_Date")

@@ -53,14 +53,9 @@ public class User {
     @Column(name="phone_Number")
     private String phoneNumber;
 
-    @Nullable
-    @Column(name="created_Date")
-    private Date createdDate;
-    @Nullable
-    @Column(name="update_Date")
-    private Date updateDate;
 
-    @JsonIgnoreProperties("userDaos")
+
+    @JsonIgnoreProperties("users")
     @ManyToOne()
     private Function function;
 
@@ -68,4 +63,23 @@ public class User {
     @ManyToMany
     @JoinTable(name = "profile_group_users",joinColumns = @JoinColumn(name = "id_user"),inverseJoinColumns = @JoinColumn(name = "id_profile_group"))
     private List<Profile_group> profile_groups;
+
+    @JsonIgnoreProperties("userDeclaration")
+    @OneToMany(mappedBy = "userDeclaration",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Damage> damageDeclaration;
+
+    @JsonIgnoreProperties("userResolution")
+    @OneToMany(mappedBy = "userResolution",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Damage> damageResolution;
+
+    @JsonIgnoreProperties("userClosed")
+    @OneToMany(mappedBy = "userClosed",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Damage> damageClosed;
+
+    @Nullable
+    @Column(name="created_Date")
+    private Date createdDate;
+    @Nullable
+    @Column(name="update_Date")
+    private Date updateDate;
 }
